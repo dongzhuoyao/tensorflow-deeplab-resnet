@@ -93,8 +93,12 @@ def main():
         # Perform inference.
         preds = sess.run(pred,feed_dict={img_path:current_img_path})
 
-        msk = decode_labels(preds)
-        im = Image.fromarray(msk[0])
+        # dont need visulization
+        #msk = decode_labels(preds)
+        #im = Image.fromarray(msk[0])
+
+        im = preds[0]
+
         if not os.path.exists(args.save_dir):
             os.makedirs(args.save_dir)
 

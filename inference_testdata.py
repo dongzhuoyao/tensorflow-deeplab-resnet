@@ -55,7 +55,7 @@ def main():
         print("save_dir not exist,mkdir..")
         os.makedirs(args.save_dir)
 
-    test_img_list = glob.glob(args.test_img_dir)
+    test_img_list = glob.glob(os.path.join(args.test_img_dir,"*.jpg"))
     for img_path in test_img_list:
 
         # Prepare image.

@@ -101,6 +101,7 @@ def main():
 
         img_name = os.path.basename(img_path)
         im.save(os.path.join(args.save_dir,img_name))
+        sess.close()
 
         print('The output file has been saved to {}'.format(os.path.join(args.save_dir,img_name)))
 

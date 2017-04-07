@@ -97,7 +97,7 @@ def main():
         #msk = decode_labels(preds)
         #im = Image.fromarray(msk[0])
 
-        im = preds[0]
+        im = Image.fromarray(preds[0])
 
         if not os.path.exists(args.save_dir):
             os.makedirs(args.save_dir)

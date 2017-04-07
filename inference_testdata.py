@@ -51,6 +51,9 @@ def load(saver, sess, ckpt_path):
 def main():
     """Create the model and start the evaluation process."""
     args = get_arguments()
+    if not os.path.exists(args.save_dir):
+        print("save_dir not exist,mkdir..")
+        os.makedirs(args.save_dir)
 
     test_img_list = glob.glob(args.test_img_dir)
     for img_path in test_img_list:

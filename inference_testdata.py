@@ -91,7 +91,7 @@ def main():
     test_img_list = glob.glob(os.path.join(args.test_img_dir,"*.jpg"))
     for current_img_path in test_img_list:
         # Perform inference.
-        preds,raw_output = sess.run(pred,raw_output_up,feed_dict={img_path:current_img_path})
+        preds,raw_output = sess.run([pred,raw_output_up],feed_dict={img_path:current_img_path})
 
 
         #msk = decode_labels(preds,raw_label_output=True)

@@ -14,10 +14,23 @@ label_colours = [(0,0,0)
                 # 11=diningtable, 12=dog, 13=horse, 14=motorbike, 15=person
                 ,(0,64,0),(128,64,0),(0,192,0),(128,192,0),(0,64,128)]
                 # 16=potted plant, 17=sheep, 18=sofa, 19=train, 20=tv/monitor
+
+# colour map
+raw_label_colours = [(0,0,0)
+                # 0=background
+                ,(1,1,1),(2,2,2),(3,3,3,),(4,4,4),(5,5,5)
+                # 1=aeroplane, 2=bicycle, 3=bird, 4=boat, 5=bottle
+                ,(6,6,6),(7,7,7),(8,8,8),(9,9,9),(10,10,10)
+                # 6=bus, 7=car, 8=cat, 9=chair, 10=cow
+                ,(11,11,11),(12,12,12),(13,13,13),(14,14,14),(15,15,15)
+                # 11=diningtable, 12=dog, 13=horse, 14=motorbike, 15=person
+                ,(16,16,16),(17,17,17),(18,18,18),(19,19,19),(20,20,20)]
+                # 16=potted plant, 17=sheep, 18=sofa, 19=train, 20=tv/monitor
+
 # image mean
 IMG_MEAN = np.array((104.00698793,116.66876762,122.67891434), dtype=np.float32)
     
-def decode_labels(mask, num_images=1):
+def decode_labels(mask, num_images=1,raw_label_output = False):
     """Decode batch of segmentation masks.
     
     Args:
@@ -36,7 +49,11 @@ def decode_labels(mask, num_images=1):
       for j_, j in enumerate(mask[i, :, :, 0]):
           for k_, k in enumerate(j):
               if k < n_classes:
-                  pixels[k_,j_] = label_colours[k]
+                  if raw_label_output:
+                      pixels[k_,j_] = raw_label_colours[k]
+                  else:
+                      pixels[k_,j_] = label_colours[k]
+
       outputs[i] = np.array(img)
     return outputs
 

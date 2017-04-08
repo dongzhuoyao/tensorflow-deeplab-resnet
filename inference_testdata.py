@@ -12,7 +12,7 @@ import sys
 import time
 import glob
 from PIL import Image
-import scipy
+from scipy import misc
 
 import tensorflow as tf
 import numpy as np
@@ -101,7 +101,7 @@ def main():
 
         img_name = os.path.basename(current_img_path)
 
-        scipy.misc.toimage(raw_output, cmin=0, cmax=255).save(os.path.join(args.save_dir,img_name))
+        misc.toimage(raw_output, cmin=0, cmax=255).save(os.path.join(args.save_dir,img_name))
 
         #im.save(os.path.join(args.save_dir,img_name))
         #cv2.imwrite(os.path.join(args.save_dir,img_name),raw_output)

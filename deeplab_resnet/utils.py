@@ -18,7 +18,7 @@ label_colours = [(0,0,0)
 # colour map
 raw_label_colours = [(0,0,0)
                 # 0=background
-                ,(1,1,1),(2,2,2),(3,3,3,),(4,4,4),(5,5,5)
+                ,(1,1,1),(2,2,2),(3,3,3),(4,4,4),(5,5,5)
                 # 1=aeroplane, 2=bicycle, 3=bird, 4=boat, 5=bottle
                 ,(6,6,6),(7,7,7),(8,8,8),(9,9,9),(10,10,10)
                 # 6=bus, 7=car, 8=cat, 9=chair, 10=cow

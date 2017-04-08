@@ -11,8 +11,6 @@ import os
 import sys
 import time
 import glob
-from scipy import misc
-
 from PIL import Image
 
 import tensorflow as tf
@@ -56,6 +54,7 @@ def main():
         print("save_dir not exist,mkdir..")
         os.makedirs(args.save_dir)
 
+
     # Prepare image.
     img_path = tf.placeholder(tf.string)
     img = tf.image.decode_jpeg(tf.read_file(img_path), channels=3)
@@ -92,17 +91,16 @@ def main():
     test_img_list = glob.glob(os.path.join(args.test_img_dir,"*.jpg"))
     for current_img_path in test_img_list:
         # Perform inference.
-        preds = sess.run(pred,feed_dict={img_path:current_img_path})
+        preds,raw_output = sess.run(pred,raw_output_up,feed_dict={img_path:current_img_path})
 
 
-        msk = decode_labels(preds,raw_label_output=True)
-        im = Image.fromarray(msk[0])
-        if not os.path.exists(args.save_dir):
-            os.makedirs(args.save_dir)
+        #msk = decode_labels(preds,raw_label_output=True)
+        #im = Image.fromarray(msk[0])
+        im = Image.fromarray(raw_output)
 
         img_name = os.path.basename(current_img_path)
         im.save(os.path.join(args.save_dir,img_name))
-
+        #cv2.imwrite(os.path.join(args.save_dir,img_name),raw_output)
         print('The output file has been saved to {}'.format(os.path.join(args.save_dir,img_name)))
 
     

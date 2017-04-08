@@ -99,6 +99,8 @@ def main():
         #im = Image.fromarray(msk[0])
         #im = Image.fromarray(raw_output)
 
+        print(raw_output.shape)
+        print(preds)
         img_name = os.path.basename(current_img_path)
 
         misc.toimage(raw_output, cmin=0, cmax=255).save(os.path.join(args.save_dir,img_name))

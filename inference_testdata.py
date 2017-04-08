@@ -94,18 +94,12 @@ def main():
         # Perform inference.
         preds,raw_output = sess.run([pred,raw_output_up],feed_dict={img_path:current_img_path})
 
-
-        #msk = decode_labels(preds,raw_label_output=True)
-        #im = Image.fromarray(msk[0])
-        #im = Image.fromarray(raw_output)
-
         print(raw_output.shape)
         print(preds.shape)
-        #raw_output = tf.expand_dims(raw_output, dim=3)
         ttt = raw_output[0,:,:]
         print(ttt.shape)
         img_name = os.path.basename(current_img_path)
-        img_name.replace("jpg","png")
+        img_name = img_name.replace("jpg","png")
 
         misc.toimage(ttt, cmin=0, cmax=255).save(os.path.join(args.save_dir,img_name))
 

@@ -105,6 +105,7 @@ def main():
         ttt = raw_output[0,:,:]
         print(ttt.shape)
         img_name = os.path.basename(current_img_path)
+        img_name.replace("jpg","png")
 
         misc.toimage(ttt, cmin=0, cmax=255).save(os.path.join(args.save_dir,img_name))
 

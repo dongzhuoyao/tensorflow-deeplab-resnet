@@ -101,11 +101,12 @@ def main():
 
         print(raw_output.shape)
         print(preds.shape)
-        raw_output = tf.expand_dims(raw_output, dim=3)
-        print(raw_output.shape)
+        #raw_output = tf.expand_dims(raw_output, dim=3)
+        ttt = raw_output[0,:,:]
+        print(ttt.shape)
         img_name = os.path.basename(current_img_path)
 
-        misc.toimage(raw_output[0,:,:,:], cmin=0, cmax=255).save(os.path.join(args.save_dir,img_name))
+        misc.toimage(ttt, cmin=0, cmax=255).save(os.path.join(args.save_dir,img_name))
 
         #im.save(os.path.join(args.save_dir,img_name))
         #cv2.imwrite(os.path.join(args.save_dir,img_name),raw_output)

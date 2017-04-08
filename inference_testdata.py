@@ -12,6 +12,7 @@ import sys
 import time
 import glob
 from PIL import Image
+import scipy
 
 import tensorflow as tf
 import numpy as np
@@ -96,10 +97,13 @@ def main():
 
         #msk = decode_labels(preds,raw_label_output=True)
         #im = Image.fromarray(msk[0])
-        im = Image.fromarray(raw_output)
+        #im = Image.fromarray(raw_output)
 
         img_name = os.path.basename(current_img_path)
-        im.save(os.path.join(args.save_dir,img_name))
+
+        scipy.misc.toimage(raw_output, cmin=0, cmax=255).save(os.path.join(args.save_dir,img_name))
+
+        #im.save(os.path.join(args.save_dir,img_name))
         #cv2.imwrite(os.path.join(args.save_dir,img_name),raw_output)
         print('The output file has been saved to {}'.format(os.path.join(args.save_dir,img_name)))
 

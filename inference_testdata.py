@@ -11,6 +11,7 @@ import os
 import sys
 import time
 import glob
+from scipy import misc
 
 from PIL import Image
 
@@ -97,13 +98,16 @@ def main():
         #msk = decode_labels(preds)
         #im = Image.fromarray(msk[0])
 
-        im = Image.fromarray(preds[0])
+
+        #im = Image.fromarray(preds[0])
+
 
         if not os.path.exists(args.save_dir):
             os.makedirs(args.save_dir)
 
         img_name = os.path.basename(current_img_path)
-        im.save(os.path.join(args.save_dir,img_name))
+        misc.imsave(os.path.join(args.save_dir,img_name), preds[0])
+        #im.save(os.path.join(args.save_dir,img_name))
 
 
         print('The output file has been saved to {}'.format(os.path.join(args.save_dir,img_name)))

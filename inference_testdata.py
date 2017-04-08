@@ -100,10 +100,12 @@ def main():
         #im = Image.fromarray(raw_output)
 
         print(raw_output.shape)
-        print(preds)
+        print(preds.shape)
+        raw_output = tf.expand_dims(raw_output, dim=3)
+        print(raw_output.shape)
         img_name = os.path.basename(current_img_path)
 
-        misc.toimage(raw_output, cmin=0, cmax=255).save(os.path.join(args.save_dir,img_name))
+        misc.toimage(raw_output[0,:,:,:], cmin=0, cmax=255).save(os.path.join(args.save_dir,img_name))
 
         #im.save(os.path.join(args.save_dir,img_name))
         #cv2.imwrite(os.path.join(args.save_dir,img_name),raw_output)
